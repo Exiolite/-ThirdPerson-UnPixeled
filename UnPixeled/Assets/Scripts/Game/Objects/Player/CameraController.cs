@@ -10,6 +10,18 @@ namespace Game.Objects.Player
         private MouseInput _mouseInput;
 
 
+        [SerializeField] private float smoothSpeed = 3;
+        [SerializeField] private Vector3 offset;
+        public Transform target;
+        
+        
+        private void LateUpdate()
+        {
+            var desiredPosition = target.position + offset;
+            var smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+            transform.position = smoothedPosition;
+        }
+        
         
         private void Awake()
         {

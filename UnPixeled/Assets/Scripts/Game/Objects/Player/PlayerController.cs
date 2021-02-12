@@ -5,7 +5,6 @@ namespace Game.Objects.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        
         [Header("Editor")]
         [SerializeField] private GameObject playersModel;
         [SerializeField] private GameObject cameraRotator;
@@ -18,7 +17,6 @@ namespace Game.Objects.Player
         private Transform _playersModelTransform;
         private CharacterController _characterController;
         private MovementInput _movementInput;
-
         private Vector3 _movementDirection;
         
         
@@ -29,9 +27,16 @@ namespace Game.Objects.Player
 
         private void Awake()
         {
+            
             _characterController = GetComponent<CharacterController>();
             _movementInput = gameObject.AddComponent<MovementInput>();
             _playersModelTransform = playersModel.GetComponent<Transform>();
+        }
+
+        private void Start()
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         private void Update()
